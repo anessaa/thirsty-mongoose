@@ -10,4 +10,4 @@ var barSchema = new Schema({
         timestamps: true
     });
 
-module.exports = mongoose.modelNames('Bar', barSchema);
+module.exports = mongoose.model('Bar', barSchema);
