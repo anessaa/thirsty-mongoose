@@ -1,0 +1,24 @@
+<h1><%= bar.name %></h1>
+<h3>Location: <%= bar.location %></h3>
+
+<% if (bar.beers.length) { %>
+    <h2>Beers Served:</h2><br>
+    <% bar.beers.forEach(beer => { %>
+        <form action="/bars/<%= bar.id %>/beers/<%= beer.id %>?_method=DELETE" method="POST">
+            <label><%= beer.name %></label>
+            <button type="submit">Stop Serving</button>
+        </form>
+   <% }) %>
+<% } else { %>
+    <h3>No Beers Being Served</h3>
+    <% } %>
+
+    <hr><br><br>
+
+    <a href="/bars/<%= bar.id %>/beers/new"><button>Add Beer</button></a>
+
+    <br><br>
+
+    <form action="/bars/<%= bar.id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete This Bar</button>
+    </form>

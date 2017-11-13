@@ -1,1 +1,10 @@
+<%- include('./../_partials/nav') %>
 <h1>Beers</h1>
+
+<% for (key in beers) { %>
+    <p><strong><%= beers[key].name %></strong> - <%= beers[key].style %></p>
+    <a href="/beers/<%= beers[key].id %>"><button>Show</button></a>
+<% } %>
+<br>
+<br>
+<a href='/beers/new'>Add a Beer</a>

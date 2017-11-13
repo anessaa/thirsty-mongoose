@@ -1,0 +1,12 @@
+<% if (beers.length) { %>
+      <% beers.forEach(function(beer) { %>
+        <form action="/bars/<%= barId %>/beers/<%= beer.id %>" method="POST">
+          <button type="submit">
+            <%= beer.name %>
+            <%= beer.style %>
+          </button>
+        </form>
+      <% }) %>
+  <% } else { %>
+    <h2 class="text-center">Already Serving All Beers!</h2>
+  <% } %>

@@ -6,12 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var index = require('./routes/index');
 var bars = require('./routes/bars');
 var beers = require('./routes/beers');
 
 var app = express();
 
 require('./config/db');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
 app.use('/bars', bars);
 app.use('/beers', beers);
 
