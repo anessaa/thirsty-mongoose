@@ -42,11 +42,25 @@ function newServe(req,res) {
 }
 
 function createServe(req, res) {
-    Bar.findyById(req.params.barId, (err,bar) => {
+    Bar.findById(req.params.barId, (err,bar) => {
         bar.beers.push(req.params.beerId);
         bar.save(() => {
             Beer.findById(req.params.beerId, (err, beer) => {
                 beer.bars.push(req.params.barId);
+                beer.save(() => {
+                    res.redirect(`/bars/${bar.id}`);
+                });
+            });
+        });
+    });
+}
+
+function deleteServe(req, res) {
+    Bar.findById(req.params.barId, (err, bar) => {
+        bar.beers.remove(req.params.beerId);
+        bar.save(() => {
+            Beer.findById(req.params.beerId, (err, beer) => {
+                beer.bars.remove(req.params.barId);
                 beer.save(() => {
                     res.redirect(`/bars/${bar.id}`);
                 });
@@ -63,5 +77,6 @@ module.exports = {
     show,
     deleteBar,
     newServe,
-    createServe
+    createServe,
+    deleteServe
 }
