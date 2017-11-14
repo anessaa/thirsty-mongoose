@@ -1,8 +1,11 @@
 <h1><%= beer.name %></h1>
-<h3><%= beer.style %></h3>
+<h3>Style: <%= beer.style %></h3>
 
 <form action="/beers/<%= beer.id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Beer</button>
 </form>
 
+<br>
+<br>
 
+<a href='/beers'><button>Back</button></a>
